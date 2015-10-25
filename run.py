@@ -12,13 +12,13 @@ callers = {
     "+13102546839": "Ryan"
 }
 
-subjects = [
-    "math", "science", "english"
-]
-
-math_grades = [
-    "Grade 1", "Grade 2", "Grade 3", "Grade 4"
-]
+# subjects = [
+#     "math", "science", "english"
+# ]
+#
+# math_grades = [
+#     "Grade 1", "Grade 2", "Grade 3", "Grade 4"
+# ]
 
 @app.route("/", methods=['GET', 'POST'])
 def answering_algorithm():
@@ -38,14 +38,14 @@ def answering_algorithm():
         resp.message(message)
         return str(resp)
 
-    from_subject = request.values.get('Body')
-    if from_subject in subjects:
-        message = subjects[from_subject] + "currently has "
-        + str(math_grades, sep='\n') + "."
-        + "Type in grade 1, grade 2, grade 3, or grade 4."
-        resp = twilio.twiml.Response()
-        resp.message(message)
-        return str(resp)
+    # from_subject = request.values.get('Body')
+    # if from_subject in subjects:
+    #     message = subjects[from_subject] + "currently has "
+    #     + str(math_grades, sep='\n') + "."
+    #     + "Type in grade 1, grade 2, grade 3, or grade 4."
+    #     resp = twilio.twiml.Response()
+    #     resp.message(message)
+    #     return str(resp)
 
 
 
