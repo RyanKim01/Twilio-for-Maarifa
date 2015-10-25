@@ -5,23 +5,38 @@ app = Flask(__name__)
 
 # Try adding your own number to this list!
 callers = {
-    "+13102546839": "Ryan",
+    "+13102546839": "Ryan"
 }
 
 subjects = ["math", "science", "english"]
 
 @app.route("/", methods=['GET', 'POST'])
-def answering_algorithm():
-    body = request.values.get('Body', None).lower()
+def hello_monkey():
+    """Respond and greet the caller by name."""
+
     from_number = request.values.get('From', None)
     if from_number in callers:
-        message = callers[from_number]
-        + ", which subject do you want to select?"
-        + "We have Math, Science, and English"
+        message = callers[from_number] + ", thanks for the message!"
     else:
-        message = "Welcome to Maarifa!"
-        + "Which subject do you want to select?"
-        + "We have Math, Science, and English"
+        message = "Monkey, thanks for the message!"
+
+    resp = twilio.twiml.Response()
+    resp.message(message)
+
+    return str(resp)
+
+# @app.route("/", methods=['GET', 'POST'])
+# def answering_algorithm():
+#     body = request.values.get('Body', None).lower()
+#     from_number = request.values.get('From', None)
+    # if from_number in callers:
+    #     message = callers[from_number]
+    #     + ", which subject do you want to select?"
+    #     + "We have Math, Science, and English"
+    # else:
+    #     message = "Welcome to Maarifa!"
+    #     + "Which subject do you want to select?"
+    #     + "We have Math, Science, and English"
 
     # if from_number in callers:
     #     if body in subjects:
@@ -38,10 +53,10 @@ def answering_algorithm():
     #         + "Subtraction, Subtraction Part 2."
     #         + " Please input the lesson you want to view. Ex) Addition."
 
-    resp = twilio.twiml.Response()
-    resp.message(message)
-
-    return str(resp)
+    # resp = twilio.twiml.Response()
+    # resp.message(message)
+    #
+    # return str(resp)
 
 if __name__ == "__main__":
     app.run(debug=True)
