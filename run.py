@@ -20,7 +20,7 @@ math_grades = ["Grade 1", "Grade 2", "Grade 3", "Grade 4"]
 #             if lessons["lesson_id"] == lesson_id:
 #                 return lessons["lesson_content"]
 
-@app.route("/", methods=['GET', 'POST'])
+@app.route("/", methods=['GET'])
 def answering_algorithm():
     resp = twilio.twiml.Response()
     body = request.values.get('Body', None).lower()
@@ -29,18 +29,21 @@ def answering_algorithm():
     # user_data = users.json()
 
     if from_number in callers:
-        # message = callers[from_number] + ", which subject are
-        # you looking for?"
-        # + "We have Math, Science, and English"
-        # resp.message(message)
         if body == "math":
             message = "Which grade are you looking for?"
             + "We have grade 1 through grade 6."
             resp.message(message)
-            if body == "grade 1":
-                message = "Which content do you want to access?"
-                + "We have addition, subtraction, and prime number."
-                resp.message(message)
+    # message = callers[from_number] + ", which subject are you looking for?"
+        # + "We have Math, Science, and English"
+        # resp.message(message)
+        # if body == "math":
+        #     message = "Which grade are you looking for?"
+        #     + "We have grade 1 through grade 6."
+        #     resp.message(message)
+        #     if body == "grade 1":
+        #         message = "Which content do you want to access?"
+        #         + "We have addition, subtraction, and prime number."
+        #         resp.message(message)
     else:
         message = "Welcome to Maarifa. Which subject are you looking for?"
         + "We have Math, Science, and English"
