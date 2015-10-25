@@ -9,6 +9,7 @@ app.config.from_object(__name__)
 # Try adding your own number to this list!
 callers = {
     "+14155686292": "Curious Unathi",
+    "+13102546839": "Ryan"
 }
 
 subjects = [
@@ -25,8 +26,9 @@ def answering_algorithm():
 
     from_number = request.values.get('From')
     if from_number in callers:
-        message = callers[from_number] +
-        ", which subject are you looking for? Type in Math, English or Science"
+        message = callers[from_number]
+        + ", which subject are you looking for?"
+        + "Type in Math, English or Science"
         resp = twilio.twiml.Response()
         resp.message(message)
         return str(resp)
@@ -38,9 +40,9 @@ def answering_algorithm():
 
     from_subject = request.values.get('Body')
     if from_subject in subjects:
-        message = subjects[from_subject] + "currently has " +
-        print(math_grades, sep='\n') + "." +
-        "Type in grade 1, grade 2, grade 3, or grade 4."
+        message = subjects[from_subject] + "currently has "
+        + print(math_grades, sep='\n') + "."
+        + "Type in grade 1, grade 2, grade 3, or grade 4."
         resp = twilio.twiml.Response()
         resp.message(message)
         return str(resp)
