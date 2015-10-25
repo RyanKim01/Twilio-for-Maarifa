@@ -36,7 +36,7 @@ def hello():
     if body == "1":
         resp.message("We currently have Addition Part 1,2,3 and Subtraction Part 1,2,3. Ex, type 'Addition Part 1'.)
     if body == "addition part 1":
-        resp.message("Here is a quick link to the material! http://www.maarifa.xyz/Math/1/Addition%20Part%201")    
+        resp.message("Here is a quick link to the material! http://www.maarifa.xyz/Math/1/Addition%20Part%201")
         # users = requests.get('http://maarifa.herokuapp.com/api/lesson')
         # lesson_list = []
         # lesson_data = users.json()
