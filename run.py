@@ -33,7 +33,7 @@ def hello():
     if body == "math":
         resp.message("Okay, Math. What grade level?")
     if body == "1":
-        users = requests.get('http://maarifa.herokuapp.com/api/lesson')
+        users = requests.get('http://maarifa.herokuapp.com/api/lesson/1')
         user_data = users.json()
         resp.message(user_data["lesson_content"])
     return str(resp)
