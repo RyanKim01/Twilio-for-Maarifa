@@ -1,5 +1,6 @@
 from flask import Flask, request, redirect
 import twilio.twiml
+import requests
 
 app = Flask(__name__)
 
@@ -14,14 +15,14 @@ subjects = ["math", "science", "english"]
 def answering_algorithm():
     body = request.values.get('Body', None).lower()
     from_number = request.values.get('From', None)
-    if from_number in callers:
-        message = callers[from_number]
-        + ", which subject do you want to select?"
-        + "We have Math, Science, and English"
-    else:
-        message = "Welcome to Maarifa!"
-        + "Which subject do you want to select?"
-        + "We have Math, Science, and English"
+    # if from_number in callers:
+    #     message = callers[from_number]
+    #     + ", which subject do you want to select?"
+    #     + "We have Math, Science, and English"
+    # else:
+    #     message = "Welcome to Maarifa!"
+    #     + "Which subject do you want to select?"
+    #     + "We have Math, Science, and English"
 
     if from_number in callers:
         if body in subjects:
