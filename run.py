@@ -13,7 +13,7 @@ subjects = ["math", "science", "english"]
 
 @app.route("/", methods=['GET', 'POST'])
 def answering_algorithm():
-    body = request.values.get('Body', None).lower()
+    # body = request.values.get('Body', None).lower()
     from_number = request.values.get('From', None)
     # if from_number in callers:
     #     message = callers[from_number]
