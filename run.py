@@ -41,7 +41,7 @@ def answering_algorithm():
     from_subject = request.values.get('Body')
     if from_subject in subjects:
         message = subjects[from_subject] + "currently has "
-        + print(math_grades, sep='\n') + "."
+        + str(math_grades, sep='\n') + "."
         + "Type in grade 1, grade 2, grade 3, or grade 4."
         resp = twilio.twiml.Response()
         resp.message(message)
