@@ -30,13 +30,19 @@ def hello():
     body = request.values.get('Body', None).lower()
     resp = twilio.twiml.Response()
     if body == "hi":
-        resp.message("Hello there! What subject do you want to get lessons for?")
+        resp.message("Hello there! What subject do you want to get lessons for? We have Math, Science, and English.")
     if body == "math":
-        resp.message("Okay, Math. What grade level?")
+        resp.message("Okay, Math. What grade level? We have from Grade 1 through Grade 6. Ex, type '1'.")
     if body == "1":
-        users = requests.get('http://maarifa.herokuapp.com/api/lesson/1')
-        user_data = users.json()
-        resp.message(user_data["lesson_content"])
+        users = requests.get('http://maarifa.herokuapp.com/api/lesson')
+        lesson_list = []
+        lesson_data = users.json()
+        for lessons in lesson_data["objects"]:
+            lesson_list.append(lessons["lessson_title"])
+        resp.message(enumerate(lesson_list))
+        resp.message("Choose a lesson")
+        resp.message(lesson_data["objects"][body]["lesson_content"])
+
     return str(resp)
 
 # @app.route("/", methods=['GET', 'POST'])
