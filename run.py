@@ -27,13 +27,15 @@ def hello():
             sub_a.message("Okay!")"""
     body = request.values.get('Body', None).lower()
     resp = twilio.twiml.Response()
-    resp.message("Hello there! What subject do you want to get lessons for?")
-    rsp1 = request.values.get('Body', None).lower()
-    if rsp1 == "math":
-        resp.message("yey math!")
+    if body == "hi":
+        resp.message("Hello there! What subject do you want to get lessons for?")
+    if body == "math":
+        resp.message("Okay, Math. What grade level?")
     else:
-        resp.message("lol what's that")
+        resp.message("Sorry that subject doesn't exist yet.")
 
+    if body == "1":
+        resp.message("You have selected Grade 1. ")
     return str(resp)
 
 # @app.route("/", methods=['GET', 'POST'])
