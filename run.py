@@ -11,26 +11,41 @@ callers = {
     "+14155686292": "Curious Unathi",
 }
 
+subjects = [
+    "math", "science", "english"
+]
+
+math_grades = [
+    "Grade 1", "Grade 2", "Grade 3", "Grade 4"
+]
+
 @app.route("/", methods=['GET', 'POST'])
-def hello_monkey():
+def answering_algorithm():
     """Respond to incoming calls with a simple text message."""
-
-    counter = session.get('counter', 0)
-    # increment the counter
-    counter += 1
-
-    # Save the new counter value in the session
-    session['counter'] = counter
 
     from_number = request.values.get('From')
     if from_number in callers:
-        message = callers[from_number] + ", where are your home girls?!"
+        message = callers[from_number] +
+        ", which subject are you looking for? Type in Math, English or Science"
+        resp = twilio.twiml.Response()
+        resp.message(message)
+        return str(resp)
     else:
-        message = "Monkey, thanks for the message!"
+        message = "Welcome to Maarifa sms service center!"
+        resp = twilio.twiml.Response()
+        resp.message(message)
+        return str(resp)
 
-    resp = twilio.twiml.Response()
-    resp.message(message)
-    return str(resp)
+    from_subject = request.values.get('Body')
+    if from_subject in subjects:
+        message = subjects[from_subject] + "currently has " +
+        print(math_grades, sep='\n') + "." +
+        "Type in grade 1, grade 2, grade 3, or grade 4."
+        resp = twilio.twiml.Response()
+        resp.message(message)
+        return str(resp)
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
