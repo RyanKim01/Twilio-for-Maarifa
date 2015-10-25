@@ -29,23 +29,22 @@ def answering_algorithm():
     # user_data = users.json()
 
     if from_number in callers:
-        message = callers[from_number] + ", which subject are you looking for?"
-        + "We have Math, Science, and English"
-        resp.message(message)
-            if body == "math":
-                message = "Which grade are you looking for?"
-                + "We have grade 1 through grade 6."
+        # message = callers[from_number] + ", which subject are
+        # you looking for?"
+        # + "We have Math, Science, and English"
+        # resp.message(message)
+        if body == "math":
+            message = "Which grade are you looking for?"
+            + "We have grade 1 through grade 6."
+            resp.message(message)
+            if body == "grade 1":
+                message = "Which content do you want to access?"
+                + "We have addition, subtraction, and prime number."
                 resp.message(message)
-                    if body == "grade 1":
-                        message = "Which content do you want to access?"
-                        + "We have addition, subtraction, and prime number."
-                        resp.message(message)
     else:
         message = "Welcome to Maarifa. Which subject are you looking for?"
         + "We have Math, Science, and English"
         resp.message(message)
-
-
 
     return str(resp)
 
