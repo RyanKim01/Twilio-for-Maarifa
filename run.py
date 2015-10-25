@@ -18,22 +18,37 @@ callers = {
 # ]
 
 @app.route("/", methods=['GET', 'POST'])
-def answering_algorithm():
-    """Respond to incoming calls with a simple text message."""
+def hello_monkey():
+    """Respond and greet the caller by name."""
 
-    from_number = request.values.get('From')
+    from_number = request.values.get('From', None)
     if from_number in callers:
-        message = callers[from_number]
-        + ", which subject are you looking for?"
-        + "Type in Math, English or Science"
-        resp = twilio.twiml.Response()
-        resp.message(message)
-        return str(resp)
+        message = callers[from_number] + ", thanks for the message!"
     else:
-        message = "Welcome to Maarifa sms service center!"
-        resp = twilio.twiml.Response()
-        resp.message(message)
-        return str(resp)
+        message = "Monkey, thanks for the message!"
+
+    resp = twilio.twiml.Response()
+    resp.message(message)
+
+    return str(resp)
+
+# @app.route("/", methods=['GET', 'POST'])
+# def answering_algorithm():
+#     """Respond to incoming calls with a simple text message."""
+#
+#     from_number = request.values.get('From')
+#     if from_number in callers:
+#         message = callers[from_number]
+#         + ", which subject are you looking for?"
+#         + "Type in Math, English or Science"
+#         resp = twilio.twiml.Response()
+#         resp.message(message)
+#         return str(resp)
+#     else:
+#         message = "Welcome to Maarifa sms service center!"
+#         resp = twilio.twiml.Response()
+#         resp.message(message)
+#         return str(resp)
 
     # from_subject = request.values.get('Body')
     # if from_subject in subjects:
