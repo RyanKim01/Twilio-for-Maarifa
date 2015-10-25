@@ -11,14 +11,20 @@ callers = {
 subjects = ["math", "science", "english"]
 
 @app.route("/", methods=['GET', 'POST'])
-def hello_monkey():
+def hello():
     """Respond and greet the caller by name."""
 
     from_number = request.values.get('From', None)
     if from_number in callers:
         message = callers[from_number] + ", thanks for the message!"
     else:
-        message = "Abe, thanks for the message!"
+        message = "You are a new user. Would you like to be subscribed?"
+        sub_q = request.values.get('Body', None).lower()
+        sub_a = twilio.twiml.Response()
+        if sub_q == "yes":
+            sub_a.message("Thanks, you've been added!")
+        else:
+            sub_a.message("Okay!")
 
     resp = twilio.twiml.Response()
     resp.message(message)
