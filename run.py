@@ -19,7 +19,7 @@ def hello_monkey():
         message = "Monkey, thanks for the message!"
 
     resp = twilio.twiml.Response()
-    resp.message("Hello, Mobile Monkey")
+    resp.message(message)
     return str(resp)
 
 if __name__ == "__main__":
