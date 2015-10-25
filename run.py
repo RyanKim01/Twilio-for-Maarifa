@@ -16,10 +16,10 @@ subjects = ["math", "science", "english"]
 def hello():
     body = request.values.get('Body', None).lower()
     resp = twilio.twiml.Response()
-    if body == "hi":
-        resp.message("Hello there! What subject do you want to get lessons for? We have Math, Science, and English.")
-    if body == "math":
-        resp.message("Okay, Math. What grade level? We have from grade 1 through grade 6. Ex, type '1'.")
+    # if body == "hi":
+    #     resp.message("Hello there! What subject do you want to get lessons for? We have Math, Science, and English.")
+    # if body == "math":
+    #     resp.message("Okay, Math. What grade level? We have from grade 1 through grade 6. Ex, type '1'.")
     if body == "1":
         resp.message("We currently have Addition Part 1,2,3 and Subtraction Part 1,2,3. Ex, type 'Addition-Part-1'.)
     if body == "addition-part-1":
