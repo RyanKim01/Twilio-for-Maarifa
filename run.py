@@ -1,5 +1,6 @@
 from flask import Flask, request, redirect
 import twilio.twiml
+import requests
 
 app = Flask(__name__)
 
@@ -31,11 +32,10 @@ def hello():
         resp.message("Hello there! What subject do you want to get lessons for?")
     if body == "math":
         resp.message("Okay, Math. What grade level?")
-    else:
-        resp.message("Sorry that subject doesn't exist yet.")
-
     if body == "1":
-        resp.message("You have selected Grade 1. ")
+        users = requests.get('http://maarifa.herokuapp.com/api/lesson')
+        user_data = users.json()
+        resp.message(user_data["lesson_content"])
     return str(resp)
 
 # @app.route("/", methods=['GET', 'POST'])
