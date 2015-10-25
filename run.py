@@ -14,7 +14,7 @@ subjects = ["math", "science", "english"]
 def hello():
     """Respond and greet the caller by name."""
 
-    from_number = request.values.get('From', None)
+    """from_number = request.values.get('From', None)
     if from_number in callers:
         message = callers[from_number] + ", thanks for the message!"
     else:
@@ -24,10 +24,15 @@ def hello():
         if sub_q == "yes":
             sub_a.message("Thanks, you've been added!")
         else:
-            sub_a.message("Okay!")
-
+            sub_a.message("Okay!")"""
+    body = request.values.get('Body', None).lower()
     resp = twilio.twiml.Response()
-    resp.message(message)
+    resp.message("Hello there! What subject do you want to get lessons for?")
+    rsp1 = request.values.get('Body', None).lower()
+    if rsp1 == "math":
+        resp.message("yey math!")
+    else:
+        resp.message("lol what's that")
 
     return str(resp)
 
