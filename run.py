@@ -10,21 +10,19 @@ callers = {
     "+13102546839": "Ryan"
 }
 
-subjects = ["math", "science", "english"]
-
 @app.route("/", methods=['GET', 'POST'])
 def hello():
     body = request.values.get('Body', None).lower()
     resp = twilio.twiml.Response()
-    # if body == "hi":
-    #     resp.message("Hello there! What subject do you want to get lessons for? We have Math, Science, and English.")
-    # if body == "math":
-    #     resp.message("Okay, Math. What grade level? We have from grade 1 through grade 6. Ex, type '1'.")
-    if body == "1":
-        resp.message("We currently have Addition Part 1,2,3 and Subtraction Part 1,2,3. Ex, type 'Addition-Part-1'.)
-    if body == "addition-part-1":
-        resp.message("Here is a quick link to the material! http://www.maarifa.xyz/Math/1/Addition%20Part%201.")
-        users = requests.get('http://maarifa.herokuapp.com/api/lesson')
+    if body == "hi":
+        resp.message("Hello there! What subject do you want to get lessons for? We have Math, Science, and English.")
+    if body == "math":
+        resp.message("Okay, Math. What grade level? We have from grade 1 through grade 6. Ex, type '1'.")
+    # if body == "1":
+    #     resp.message("We currently have Addition Part 1,2,3 and Subtraction Part 1,2,3. Ex, type 'Addition-Part-1'.)
+    # if body == "addition-part-1":
+    #     resp.message("Here is a quick link to the material! http://www.maarifa.xyz/Math/1/Addition%20Part%201.")
+    #     users = requests.get('http://maarifa.herokuapp.com/api/lesson')
         # lesson_list = []
         # lesson_data = users.json()
         # for lessons in lesson_data["objects"]:
