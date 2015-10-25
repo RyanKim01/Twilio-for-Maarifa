@@ -13,27 +13,42 @@ subjects = ["math", "science", "english"]
 @app.route("/", methods=['GET', 'POST'])
 def hello_monkey():
     """Respond and greet the caller by name."""
-    body = request.values.get('Body', None).lower()
+
     from_number = request.values.get('From', None)
     if from_number in callers:
-        if body in subjects:
-            if body == "math":
-                message = "You have selected Math."
-                + " We have from Grade 1 to Grade 6."
-                + " Which Grade do you want to view?"
-                + " Type like following example: math grade 1"
-
-    if from_number in callers:
-        if body == "math grade 1":
-            message = "Welcome to Math Grade 1."
-            + "We have Addition, Addition Part 2, Addition Part 3, "
-            + "Subtraction, Subtraction Part 2."
-            + " Please input the lesson you want to view. Ex) Addition."
+        message = callers[from_number] + ", thanks for the message!"
+    else:
+        message = "Abe, thanks for the message!"
 
     resp = twilio.twiml.Response()
     resp.message(message)
 
     return str(resp)
+
+# @app.route("/", methods=['GET', 'POST'])
+# def respond():
+#     """Respond and greet the caller by name."""
+#     body = request.values.get('Body', None).lower()
+#     from_number = request.values.get('From', None)
+#     if from_number in callers:
+#         if body in subjects:
+#             if body == "math":
+#                 message = "You have selected Math."
+#                 + " We have from Grade 1 to Grade 6."
+#                 + " Which Grade do you want to view?"
+#                 + " Type like following example: math grade 1"
+#
+#     if from_number in callers:
+#         if body == "math grade 1":
+#             message = "Welcome to Math Grade 1."
+#             + "We have Addition, Addition Part 2, Addition Part 3, "
+#             + "Subtraction, Subtraction Part 2."
+#             + " Please input the lesson you want to view. Ex) Addition."
+#
+#     resp = twilio.twiml.Response()
+#     resp.message(message)
+#
+#     return str(resp)
 
 # @app.route("/", methods=['GET', 'POST'])
 # def answering_algorithm():
