@@ -1,10 +1,7 @@
-from flask import Flask, request, redirect, session
+from flask import Flask, request, redirect
 import twilio.twiml
 
-# The session object makes use of a secret key.
-SECRET_KEY = 'a secret key'
 app = Flask(__name__)
-app.config.from_object(__name__)
 
 # Try adding your own number to this list!
 callers = {
